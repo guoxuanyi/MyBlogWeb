@@ -10,4 +10,6 @@ export interface AjaxInterfaceService {
   FreezeUser(userId: string): Observable<number>;
   UnFreezeUser(userId: string): Observable<number>;
   UpdateUser(user: IUser): Observable<number>;
+  GetNotDeleteBlogs(): Observable<IBlogs[]>;
+  GetNotDeleteBlogsTop4(): Observable<IBlogs[]>;
 }

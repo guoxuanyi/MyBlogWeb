@@ -52,4 +52,11 @@ export class AjaxService extends RequestService implements AjaxInterfaceService 
     return this.put<number>(`api/${this.version}/User/update`, user);
   }
 
+  GetNotDeleteBlogs(): Observable<IBlogs[]> {
+    return this.get<IBlogs[]>(`api/${this.version}/Blog/undelete-blogs`);
+  }
+
+  GetNotDeleteBlogsTop4(): Observable<IBlogs[]> {
+    return this.get<IBlogs[]>(`api/${this.version}/Blog/top4-undelete-blogs`);
+  }
 }

@@ -1,0 +1,52 @@
+@mixin font {
+  color: #fff;
+  opacity: 1;
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+}
+
+header {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  background: seagreen;
+  &:hover {
+    box-shadow: rgb(80, 80, 80) 0px 10px 10px;
+  }
+  .title {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    nav {
+      padding: 1.5rem !important;
+      .title-h1 {
+        @include font();
+        display: inline-block;
+        font-size: 30px;
+        letter-spacing: 1px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+    .title-menu {
+      display: block;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      padding-inline-start: 40px;
+      float: right;
+      margin-top: 0.5rem !important;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      position: relative;
+      li {
+        @include font();
+        margin-right: 1.5rem !important;
+        margin: 0px;
+        float: left;
+        cursor: pointer;
+      }
+    }
+  }
+}

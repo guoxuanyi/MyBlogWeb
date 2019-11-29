@@ -1,0 +1,43 @@
+@mixin font {
+  color: #fff;
+  opacity: 1;
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+}
+
+.center-div {
+  background: rgb(53, 163, 101);
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+
+  .center-div-context {
+    @include font();
+    margin: 12em auto 5em auto;
+    background: rgba(0, 0, 0, 0.226);
+    display: inline-block;
+    padding: 4em 3em;
+    text-align: center;
+    @media screen and (min-width: 880px) {
+      width: 26%;
+    }
+    h1 {
+      color: #fff;
+      font-size: 2.5em;
+    }
+    .home-btn {
+      padding: 12px 40px;
+      border: 1px solid #ffffff;
+      background-color: transparent;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+    &:hover {
+      box-shadow: rgb(80, 80, 80) 0px 10px 10px;
+    }
+  }
+}

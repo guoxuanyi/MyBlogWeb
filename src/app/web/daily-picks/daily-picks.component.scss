@@ -1,0 +1,28 @@
+section {
+  background: #f1f1f1;
+  text-align: center !important;
+  padding: 3rem 0 !important;
+  .daily-picks {
+    .daily-picks-title {
+      color: #666;
+      font-weight: 300;
+      font-size: 2em;
+      line-height: 1.6em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .daily-picks-title-style {
+      color: rgb(255, 168, 38);
+    }
+    .daily-picks-body {
+      padding: 5em;
+      background: #fff;
+      flex: 0 0 50%;
+      .daily-picks-context {
+        float: left;
+        max-width: 50%;
+        text-align: center !important;
+      }
+    }
+  }
+}
