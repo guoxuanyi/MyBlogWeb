@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { EmitService } from '../../common/service/emit-service.service';
 
 @Component({
   selector: 'app-read-more',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./read-more.component.scss']
 })
 export class ReadMoreComponent implements OnInit {
-
-  constructor() { }
+  theme: string;
+  constructor(private emitService: EmitService) { }
 
   ngOnInit() {
+    this.onChangTheme();
   }
 
+  onChangTheme() {
+    this.emitService.eventEmit.subscribe((data: string) => {
+      this.theme = data;
+    })
+  }
 }

@@ -1,0 +1,7 @@
+<div class="theme">
+    <h1>THEME</h1>
+    <div class="theme-btn-div">
+        <button *ngFor="let item of themeBtn" class="theme-btn" [ngStyle]="{background: item}" nz-button
+            (click)='changeTheme(item)'></button>
+    </div>
+</div>

@@ -2,11 +2,14 @@
     <div class="daily-picks">
         <h1 class="daily-picks-title">daily <span class="daily-picks-title-style">picks</span></h1>
         <div class="daily-picks-body">
-            <div class="daily-picks-context" *ngFor="let item of blogs">
-                <img src="" alt="">
-                <h4>{{item.blogTitle}}</h4>
-                <p>{{item.blogContent}}</p>
+            <div class="daily-picks-box">
+                <div class="daily-picks-context" *ngFor="let item of blogs">
+                    <img src="{{item.blogViews}}" alt="not found">
+                    <h4>{{item.blogTitle}}</h4>
+                    <p>{{item.blogContent}}</p>
+                </div>
             </div>
+            <button nz-button [ngStyle]="{background: theme}">SEE MORE</button>
         </div>
     </div>
 </section>

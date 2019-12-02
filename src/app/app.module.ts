@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './web/header/header.component';
 import { ReadMoreComponent } from './web/read-more/read-more.component';
 import { DailyPicksComponent } from './web/daily-picks/daily-picks.component';
+import { ThemeComponent } from './web/theme/theme.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DailyPicksComponent } from './web/daily-picks/daily-picks.component';
     HeaderComponent,
     ReadMoreComponent,
     DailyPicksComponent,
+    ThemeComponent,
   ],
   imports: [
     BrowserModule,

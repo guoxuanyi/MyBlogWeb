@@ -6,7 +6,7 @@
 }
 
 .center-div {
-  background: rgb(53, 163, 101);
+  background: #42d4bd;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -18,7 +18,7 @@
   .center-div-context {
     @include font();
     margin: 12em auto 5em auto;
-    background: rgba(0, 0, 0, 0.226);
+    background: #9cd7df62;
     display: inline-block;
     padding: 4em 3em;
     text-align: center;
