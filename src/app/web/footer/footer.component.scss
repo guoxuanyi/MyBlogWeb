@@ -1,0 +1,19 @@
+.footer {
+  background: #f1f1f1;
+  p {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    font-size: 1.1em;
+    line-height: 1.9;
+    color: #999;
+    font-family: "Lato", sans-serif;
+    text-align: center;
+    span {
+      color: #00cbb6;
+    }
+  }
+}

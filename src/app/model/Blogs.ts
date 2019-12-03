@@ -1,4 +1,4 @@
-interface IBlogs {
+export class Blogs {
     blogId: string;
     blogTitle: string;
     blogContent: string;

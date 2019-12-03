@@ -4,6 +4,8 @@ import { AjaxInterfaceService } from './Interface/ajax-interface.service';
 import { HttpClient } from '@angular/common/http';
 import { RequestService } from './request.service';
 import { version } from '../../model/BlogVersion';
+import { User } from 'src/app/model/User';
+import { Blogs } from 'src/app/model/Blogs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +18,16 @@ export class AjaxService extends RequestService implements AjaxInterfaceService 
     this.version = version;
   }
 
-  GetAllUsers(): Observable<IUser[]> {
-    return this.get<IUser[]>(`api/${this.version}/User/users`);
+  GetAllUsers(): Observable<User[]> {
+    return this.get<User[]>(`api/${this.version}/User/users`);
   }
 
-  GetAllUsersNotFreeze(): Observable<IUser[]> {
-    return this.get<IUser[]>(`api/${this.version}/User/users-unFreeze`);
+  GetAllUsersNotFreeze(): Observable<User[]> {
+    return this.get<User[]>(`api/${this.version}/User/users-unFreeze`);
   }
 
-  GetUserByUserId(userId: string): Observable<IUser> {
-    return this.get<IUser>(`api/${this.version}/User/users/`, userId);
+  GetUserByUserId(userId: string): Observable<User> {
+    return this.get<User>(`api/${this.version}/User/users/`, userId);
   }
 
   Login(userName: string, userPassWord: string): Observable<boolean> {
@@ -36,7 +38,7 @@ export class AjaxService extends RequestService implements AjaxInterfaceService 
     return this.post<boolean>(`api/${this.version}/User/login`, data);
   }
 
-  Register(user: IUser): Observable<boolean> {
+  Register(user: User): Observable<boolean> {
     return this.post<boolean>(`api/${this.version}/User/register`, user);
   }
 
@@ -48,15 +50,15 @@ export class AjaxService extends RequestService implements AjaxInterfaceService 
     return this.get<number>(`api/${this.version}/User/users-unFreeze/`, userId)
   }
 
-  UpdateUser(user: IUser): Observable<number> {
+  UpdateUser(user: User): Observable<number> {
     return this.put<number>(`api/${this.version}/User/update`, user);
   }
 
-  GetNotDeleteBlogs(): Observable<IBlogs[]> {
-    return this.get<IBlogs[]>(`api/${this.version}/Blog/undelete-blogs`);
+  GetNotDeleteBlogs(): Observable<Blogs[]> {
+    return this.get<Blogs[]>(`api/${this.version}/Blog/undelete-blogs`);
   }
 
-  GetNotDeleteBlogsTop4(): Observable<IBlogs[]> {
-    return this.get<IBlogs[]>(`api/${this.version}/Blog/top4-undelete-blogs`);
+  GetNotDeleteBlogsTop4(): Observable<Blogs[]> {
+    return this.get<Blogs[]>(`api/${this.version}/Blog/top4-undelete-blogs`);
   }
 }

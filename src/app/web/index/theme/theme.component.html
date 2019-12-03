@@ -1,0 +1,11 @@
+<div class="theme">
+    <h1>THEME</h1>
+    <div class="theme-btn-div">
+        <div class="theme-btn-box">
+            <span *ngFor="let item of themeBtn">
+                <button class="theme-btn" [ngStyle]="{background: item.bgColor}" nz-button
+                    (click)='changeTheme(item)'></button>
+            </span>
+        </div>
+    </div>
+</div>

@@ -9,12 +9,15 @@
     text-align: center;
   }
   .theme-btn-div {
-    max-width: 20%;
-    margin: 0 auto;
-    .theme-btn {
-      margin-left: 10px;
-      margin-right: 5px;
-      display: inline-block;
+    .theme-btn-box {
+      text-align: center;
+      span {
+        width: 2.5%;
+        .theme-btn {
+          margin-left: 10px;
+          display: inline-block;
+        }
+      }
     }
   }
 }

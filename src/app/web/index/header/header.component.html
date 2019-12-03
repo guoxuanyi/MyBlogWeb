@@ -1,9 +1,9 @@
-<header>
+<header [ngStyle]="{background: theme.helpColor}">
     <div class="title">
         <nav>
             <h1 class="title-h1">MyBlog</h1>
             <ul class="title-menu">
-                <li *ngFor="let item of menu">
+                <li *ngFor="let item of menu;let i = index" (click)="selectOptions(i+1)">
                     {{item}}
                 </li>
             </ul>
