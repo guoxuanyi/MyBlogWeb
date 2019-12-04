@@ -6,9 +6,12 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeOnChangeService {
+export class GetEmit {
   public theme: Subject<theme> = new Subject;
+  public page: Subject<number> = new Subject;
+
   constructor(private emitService: EmitService) {
-    this.theme = this.emitService.eventEmit;
+    this.theme = this.emitService.emitTheme;
+    this.page = this.emitService.emitPage;
   }
 }

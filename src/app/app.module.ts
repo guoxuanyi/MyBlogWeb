@@ -15,6 +15,8 @@ import { AboutComponent } from './web/index/about/about.component';
 import { FooterComponent } from './web/footer/footer.component';
 import { HomeComponent } from './web/home/home.component';
 import { IndexComponent } from './web/index/index.component';
+import { SigninComponent } from './web/signin/signin.component';
+import { SignupComponent } from './web/signup/signup.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { IndexComponent } from './web/index/index.component';
     FooterComponent,
     HomeComponent,
     IndexComponent,
+    SigninComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

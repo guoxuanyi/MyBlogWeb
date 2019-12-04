@@ -21,8 +21,6 @@ export class ThemeComponent implements OnInit {
   }
 
   changeTheme(event) {
-    console.log(event);
-
-    this.emitService.eventEmit.emit(event);
+    this.emitService.emitTheme.emit(event);
   }
 }

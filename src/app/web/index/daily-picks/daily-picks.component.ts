@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Blogs } from 'src/app/model/Blogs';
 import { theme } from 'src/app/model/Theme';
 import { AjaxService } from 'src/app/common/service/ajax.service';
-import { ThemeOnChangeService } from 'src/app/common/service/theme-on-change.service';
+import { GetEmit } from '../../../common/service/get-emit.service';
 
 
 @Component({
@@ -13,8 +13,8 @@ import { ThemeOnChangeService } from 'src/app/common/service/theme-on-change.ser
 export class DailyPicksComponent implements OnInit {
   blogs: Blogs[] = [];
   theme: theme = new theme;
-  constructor(private ajax: AjaxService, private themeChange: ThemeOnChangeService) {
-    this.themeChange.theme.subscribe((data: theme) => {
+  constructor(private ajax: AjaxService, private getEmit: GetEmit) {
+    this.getEmit.theme.subscribe((data: theme) => {
       this.theme = data;
     })
   }

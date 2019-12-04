@@ -7,7 +7,7 @@ export interface AjaxInterfaceService {
   GetAllUsers(): Observable<User[]>;
   GetAllUsersNotFreeze(): Observable<User[]>;
   GetUserByUserId(userId: string): Observable<User>;
-  Login(userName: string, passWord: string): Observable<boolean>;
+  SignIn(userName: string, passWord: string): Observable<boolean>;
   Register(user: User): Observable<boolean>;
   FreezeUser(userId: string): Observable<number>;
   UnFreezeUser(userId: string): Observable<number>;

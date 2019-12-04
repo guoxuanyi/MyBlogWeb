@@ -1,1 +1,30 @@
-<p>home works!</p>
+<section>
+    <div class="blogs-box">
+        <div class="blogs-context" *ngIf="onLoading">
+            <div class="blogs" *ngFor="let item of blogs">
+                <nz-card style="width:300px;" [nzCover]="coverTemplate"
+                    [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+                    <nz-card-meta nzTitle="{{item.blogTitle}}" nzDescription="{{item.blogContent}}"
+                        [nzAvatar]="avatarTemplate">
+                    </nz-card-meta>
+                </nz-card>
+                <ng-template #avatarTemplate>
+                    <nz-avatar nzSrc=""></nz-avatar>
+                </ng-template>
+                <ng-template #coverTemplate>
+                    <img alt="example" [src]="item.blogViews" />
+                </ng-template>
+                <ng-template #actionSetting>
+                    <i nz-icon nzType="like"></i><i>{{item.blogLikeCount}}</i>
+                </ng-template>
+                <ng-template #actionEdit>
+                    <i nz-icon nzType="eye"></i><i>{{item.blogCommentCount}}</i>
+                </ng-template>
+                <ng-template #actionEllipsis>
+                    <i nz-icon nzType="ellipsis"></i><i>More</i>
+                </ng-template>
+            </div>
+        </div>
+        <nz-skeleton *ngIf="!onLoading" [nzActive]="true"></nz-skeleton>
+    </div>
+</section>

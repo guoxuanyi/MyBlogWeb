@@ -1,0 +1,18 @@
+section {
+  background: #f1f1f1;
+  padding-top: 10em;
+  .blogs-box {
+    margin-left: 4em;
+    margin-right: 4em;
+    background: #fff;
+    padding-bottom: 2em;
+    .blogs-context {
+      text-align: center;
+      .blogs {
+        display: inline-block;
+        margin: 1em;
+        text-align: left;
+      }
+    }
+  }
+}

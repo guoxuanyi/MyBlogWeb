@@ -5,7 +5,9 @@ import { theme } from '../../model/Theme';
   providedIn: 'root'
 })
 export class EmitService {
-  public eventEmit: EventEmitter<theme> = new EventEmitter();
+  public emitTheme: EventEmitter<theme> = new EventEmitter();
+  public emitPage: EventEmitter<number> = new EventEmitter();
+
   constructor() {
   }
 }

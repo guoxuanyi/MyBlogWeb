@@ -6,6 +6,7 @@ import { RequestService } from './request.service';
 import { version } from '../../model/BlogVersion';
 import { User } from 'src/app/model/User';
 import { Blogs } from 'src/app/model/Blogs';
+import { SingInUser } from '../../model/SignInUser';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +31,10 @@ export class AjaxService extends RequestService implements AjaxInterfaceService 
     return this.get<User>(`api/${this.version}/User/users/`, userId);
   }
 
-  Login(userName: string, userPassWord: string): Observable<boolean> {
-    let data = {
-      userName,
-      userPassWord
-    };
+  SignIn(userName: string, userPassWord: string): Observable<boolean> {
+    let data: SingInUser = new SingInUser;
+    data.userName = userName;
+    data.userPassWord = userPassWord;
     return this.post<boolean>(`api/${this.version}/User/login`, data);
   }
 
