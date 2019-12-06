@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { theme } from 'src/app/model/Theme';
-import { EmitService } from 'src/app/common/service/emit-service.service';
+import { Router, NavigationEnd } from '@angular/router';
+import { Emit } from '../../../common/service/get-emit.service';
 
 @Component({
   selector: 'app-theme',
@@ -15,12 +16,14 @@ export class ThemeComponent implements OnInit {
     { bgColor: '#ffc0ce', helpColor: '#ffbad0' }, { bgColor: '#f44336', helpColor: '#e72b20' }
   ];
 
-  constructor(private emitService: EmitService) { }
+  constructor(private router: Router, private commonEmit: Emit) { }
 
   ngOnInit() {
   }
 
-  changeTheme(event) {
-    this.emitService.emitTheme.emit(event);
+  changeTheme(event: theme) {
+    this.commonEmit.saveTheme = event;
+    this.commonEmit.emitTheme.emit(event);
   }
+
 }

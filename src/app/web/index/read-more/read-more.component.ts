@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { theme } from 'src/app/model/Theme';
-import { EmitService } from 'src/app/common/service/emit-service.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { Emit } from '../../../common/service/get-emit.service';
 
 @Component({
   selector: 'app-read-more',
@@ -10,14 +10,17 @@ import { Router } from '@angular/router';
 })
 export class ReadMoreComponent implements OnInit {
   theme: theme = new theme;
-  constructor(private emitService: EmitService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.onChangTheme();
+  constructor(private commomEmit: Emit, private router: Router) {
+    this.theme.bgColor = this.commomEmit.saveTheme == null ? '#42d4bd' : this.commomEmit.saveTheme.bgColor;
+    this.theme.helpColor = this.commomEmit.saveTheme == null ? '#00cbb6' : this.commomEmit.saveTheme.helpColor;
   }
 
-  onChangTheme(): void {
-    this.emitService.emitTheme.subscribe((data: theme) => {
+  ngOnInit(): void {
+    this.getEmitTheme();
+  }
+
+  getEmitTheme(): void {
+    this.commomEmit.theme.subscribe((data: theme) => {
       this.theme = data;
     })
   }

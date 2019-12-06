@@ -1,11 +1,19 @@
 <div class="signIn">
-    <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
-        <input type="text" nz-input placeholder="Enter your username" [(ngModel)]="userName" />
-    </nz-input-group>
-    <ng-template #prefixTemplateUser><i nz-icon nzType="user"></i></ng-template>
-    <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplatePass">
-        <input type="password" nz-input placeholder="Enter your password" [(ngModel)]="passWord" />
-    </nz-input-group>
-    <ng-template #prefixTemplatePass><i nz-icon nzType="lock"></i></ng-template>
-    <button nz-button nzType="primary" (click)="signIn(userName,passWord)" [nzLoading]="isLoading">Sign in</button>
+    <div class="signIn-box">
+        <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser">
+            <input type="text" nz-input placeholder="Enter your username" [(ngModel)]="userName" />
+        </nz-input-group>
+        <ng-template #prefixTemplateUser><i nz-icon nzType="user"></i></ng-template>
+        <br>
+        <nz-input-group [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplatePass">
+            <input type="password" nz-input placeholder="Enter your password" [(ngModel)]="passWord" />
+        </nz-input-group>
+        <ng-template #prefixTemplatePass><i nz-icon nzType="lock"></i></ng-template>
+        <span [ngStyle]="{color: theme.bgColor}">Forget your password?</span>
+        <div class="signIn-btn">
+            <button [ngStyle]="{color: theme.bgColor}" nz-button nzType="primary" (click)="signIn(userName,passWord)"
+                [nzLoading]="isLoading">Sign
+                in</button>
+        </div>
+    </div>
 </div>

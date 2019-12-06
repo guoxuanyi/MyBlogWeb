@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { theme } from 'src/app/model/Theme';
-import { GetEmit } from '../../../common/service/get-emit.service';
+import { Emit } from '../../../common/service/get-emit.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,9 @@ export class HeaderComponent implements OnInit {
   menu: string[] = ['SIGN IN', 'SIGN UP'];
   theme: theme = new theme;
   page: number = 0;
-  constructor(private getEmit: GetEmit, private router: Router) { }
+  constructor(private commonEmit: Emit, private router: Router) {
+    this.theme.helpColor = '#00cbb6';
+  }
 
   ngOnInit() {
     this.GetThemeEmit();
@@ -34,16 +36,13 @@ export class HeaderComponent implements OnInit {
   }
 
   GetThemeEmit(): void {
-    this.getEmit.theme.subscribe((data: theme) => {
+    this.commonEmit.theme.subscribe((data: theme) => {
       this.theme = data;
     });
-
   }
   GetPageEmit(): void {
-    this.getEmit.page.subscribe((res: number) => {
+    this.commonEmit.page.subscribe((res: number) => {
       this.page = res;
-      console.log(this.page);
-
     });
   }
 }

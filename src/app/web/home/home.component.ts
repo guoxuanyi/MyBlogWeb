@@ -3,7 +3,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 import { AjaxService } from '../../common/service/ajax.service';
 import { Blogs } from 'src/app/model/Blogs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmitService } from '../../common/service/emit-service.service';
+import { Emit } from '../../common/service/get-emit.service';
 const count = 5;
 
 @Component({
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   page: number = 0;
   blogs: Blogs[] = [];
   onLoading: boolean = false;
-  constructor(private ajax: AjaxService, private routeInfo: ActivatedRoute, private emitService: EmitService) { }
+  constructor(private ajax: AjaxService, private routeInfo: ActivatedRoute, private commonEmit: Emit) { }
 
   ngOnInit(): void {
     this.EmitPage();
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   EmitPage(): void {
     this.page = this.routeInfo.snapshot.params["page"];
-    this.emitService.emitPage.emit(this.page);
+    this.commonEmit.emitPage.emit(this.page);
   }
 
   loadData(): void {

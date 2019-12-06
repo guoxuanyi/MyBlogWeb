@@ -1,4 +1,27 @@
 .signIn {
   background: #f1f1f1;
   padding-top: 10em;
+  .signIn-box {
+    @media screen and (min-width: 960px) {
+      width: 25%;
+      margin: 0 auto;
+    }
+    nz-input-group {
+      margin: 1em 0;
+    }
+    span {
+      font-size: 1.1em;
+      letter-spacing: 1px;
+      line-height: 1.9;
+      color: #999;
+      font-family: "Lato", sans-serif;
+    }
+    .signIn-btn {
+      text-align: center;
+      margin-top: 1em;
+      button {
+        width: 100%;
+      }
+    }
+  }
 }
