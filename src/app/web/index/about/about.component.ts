@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { theme } from 'src/app/model/Theme';
-import { Emit } from '../../../common/service/get-emit.service';
+import { Emit } from '../../../common/service/emit.service';
 
 
 @Component({
@@ -10,14 +10,16 @@ import { Emit } from '../../../common/service/get-emit.service';
 })
 export class AboutComponent implements OnInit {
   theme: theme = new theme;
-  constructor(private commonEmit: Emit) {
+  constructor(private commonEmit: Emit) { }
+
+  ngOnInit(): void {
+    this.themeInit();
+  }
+
+  themeInit(): void {
     this.theme.bgColor = this.commonEmit.saveTheme == null ? '#42d4bd' : this.commonEmit.saveTheme.bgColor;
-    this.commonEmit.theme.subscribe((data: theme) => {
-      this.theme = data;
+    this.commonEmit.theme.subscribe((res: theme) => {
+      this.theme = res;
     });
   }
-
-  ngOnInit() {
-  }
-
 }

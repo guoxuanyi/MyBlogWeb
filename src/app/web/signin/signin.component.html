@@ -9,10 +9,12 @@
             <input type="password" nz-input placeholder="Enter your password" [(ngModel)]="passWord" />
         </nz-input-group>
         <ng-template #prefixTemplatePass><i nz-icon nzType="lock"></i></ng-template>
-        <span [ngStyle]="{color: theme.bgColor}">Forget your password?</span>
+        <div class="signIn-help">
+            <span>Forget your password?</span>
+            <a>Click here</a>
+        </div>
         <div class="signIn-btn">
-            <button [ngStyle]="{color: theme.bgColor}" nz-button nzType="primary" (click)="signIn(userName,passWord)"
-                [nzLoading]="isLoading">Sign
+            <button nz-button nzType="primary" (click)="signIn(userName,passWord)" [nzLoading]="isLoading">Sign
                 in</button>
         </div>
     </div>

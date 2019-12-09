@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { theme } from 'src/app/model/Theme';
-import { Emit } from '../../../common/service/get-emit.service';
+import { Emit } from '../../../common/service/emit.service';
 
 @Component({
   selector: 'app-header',
@@ -13,16 +13,29 @@ export class HeaderComponent implements OnInit {
   menu: string[] = ['SIGN IN', 'SIGN UP'];
   theme: theme = new theme;
   page: number = 0;
-  constructor(private commonEmit: Emit, private router: Router) {
-    this.theme.helpColor = '#00cbb6';
+  constructor(private commonEmit: Emit, private router: Router) { }
+
+  ngOnInit(): void {
+    this.themeInit();
+    this.listenRouter();
   }
 
-  ngOnInit() {
-    this.GetThemeEmit();
-    this.GetPageEmit();
+  themeInit(): void {
+    this.theme.helpColor = this.commonEmit.saveTheme == null ? '#00cbb6' : this.commonEmit.saveTheme.helpColor;
+    this.commonEmit.theme.subscribe((res: theme) => {
+      this.theme = res;
+    });
   }
 
-  selectOptions(i) {
+  listenRouter() {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        alert(event);
+      }
+    });
+  }
+
+  selectOptions(i): void {
     switch (i) {
       case 1:
         this.router.navigate(['/signIn', 3]);
@@ -35,14 +48,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  GetThemeEmit(): void {
-    this.commonEmit.theme.subscribe((data: theme) => {
-      this.theme = data;
-    });
+  gotoIndex(): void {
+    this.router.navigate(['home']);
   }
-  GetPageEmit(): void {
-    this.commonEmit.page.subscribe((res: number) => {
-      this.page = res;
-    });
-  }
+
+
 }

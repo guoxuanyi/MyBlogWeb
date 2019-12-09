@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Blogs } from 'src/app/model/Blogs';
 import { theme } from 'src/app/model/Theme';
 import { AjaxService } from 'src/app/common/service/ajax.service';
-import { Emit } from '../../../common/service/get-emit.service';
+import { Emit } from '../../../common/service/emit.service';
 
 
 @Component({
@@ -13,20 +13,23 @@ import { Emit } from '../../../common/service/get-emit.service';
 export class DailyPicksComponent implements OnInit {
   blogs: Blogs[] = [];
   theme: theme = new theme;
-  constructor(private ajax: AjaxService, private commonEmit: Emit) {
+  constructor(private ajax: AjaxService, private commonEmit: Emit) { }
+
+  ngOnInit(): void {
+    this.themeInit();
+    this.loadFirstFourBlogs();
+  }
+
+  themeInit(): void {
     this.theme.bgColor = this.commonEmit.saveTheme == null ? '#42d4bd' : this.commonEmit.saveTheme.bgColor;
-    this.commonEmit.theme.subscribe((data: theme) => {
-      this.theme = data;
-    })
+    this.commonEmit.theme.subscribe((res: theme) => {
+      this.theme = res;
+    });
   }
 
-  ngOnInit() {
-    this.GetNotDeleteBlogs();
-  }
-
-  GetNotDeleteBlogs() {
-    this.ajax.GetNotDeleteBlogsTop4().subscribe((data: Blogs[]) => {
-      this.blogs = data;
+  loadFirstFourBlogs(): void {
+    this.ajax.getNotDeleteBlogsTop4().subscribe((res: Blogs[]) => {
+      this.blogs = res;
     });
   }
 }

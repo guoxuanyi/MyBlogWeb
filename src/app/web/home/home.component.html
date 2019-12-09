@@ -1,8 +1,8 @@
 <section>
     <div class="blogs-box">
         <div class="blogs-context" *ngIf="onLoading">
-            <div class="blogs" *ngFor="let item of blogs">
-                <nz-card style="width:300px;" [nzCover]="coverTemplate"
+            <div class="blogs" *ngFor="let item of blogs index as i">
+                <nz-card [nzHoverable]="true" [nzLoading]="loading" style="width:300px;" [nzCover]="coverTemplate"
                     [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
                     <nz-card-meta nzTitle="{{item.blogTitle}}" nzDescription="{{item.blogContent}}"
                         [nzAvatar]="avatarTemplate">
@@ -15,7 +15,7 @@
                     <img alt="example" [src]="item.blogViews" />
                 </ng-template>
                 <ng-template #actionSetting>
-                    <i nz-icon nzType="like"></i><i>{{item.blogLikeCount}}</i>
+                    <i id="i{{i}}" nz-icon nzType="like" (click)="likeBlog(item,i)"></i><i>{{item.blogLikeCount}}</i>
                 </ng-template>
                 <ng-template #actionEdit>
                     <i nz-icon nzType="eye"></i><i>{{item.blogCommentCount}}</i>
@@ -25,6 +25,17 @@
                 </ng-template>
             </div>
         </div>
-        <nz-skeleton *ngIf="!onLoading" [nzActive]="true"></nz-skeleton>
+        <div class="blogs-context" *ngIf="!onLoading">
+            <div class="blogs" *ngFor="let item of blogs">
+                <nz-card style="width: 300px;margin-top: 16px"
+                    [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+                    <nz-skeleton [nzActive]="true" [nzAvatar]="{ size: 'large' }">
+                        <nz-card-meta [nzAvatar]="avatarTemplate" nzTitle="Card title"
+                            nzDescription="This is the description">
+                        </nz-card-meta>
+                    </nz-skeleton>
+                </nz-card>
+            </div>
+        </div>
     </div>
 </section>

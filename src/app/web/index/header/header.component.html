@@ -1,12 +1,12 @@
 <header [ngStyle]="{background: theme.helpColor}">
     <div class="title">
         <nav>
-            <h1 class="title-h1">MyBlog</h1>
-            <ul class="title-menu" *ngIf="page==0">
+            <h1 class="title-h1" (click)="gotoIndex()">MyBlog</h1>
+            <ul class="title-menu">
                 <li class="title-menu-li" *ngFor="let item of menu;let i = index" (click)="selectOptions(i+1)">
                     {{item}}
                 </li>
-                <li class="title-menu-li" *ngIf="page==0">
+                <li class="title-menu-li">
                     <nz-anchor [nzAffix]='false'>
                         <nz-link nzHref=".about" nzTitle="About"></nz-link>
                     </nz-anchor>

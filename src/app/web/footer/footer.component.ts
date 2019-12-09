@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { theme } from '../../model/Theme';
-import { Emit } from '../../common/service/get-emit.service';
-
+import { Emit } from 'src/app/common/service/emit.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -9,13 +8,15 @@ import { Emit } from '../../common/service/get-emit.service';
 })
 export class FooterComponent implements OnInit {
   theme: theme = new theme;
-  constructor(private commonEmit: Emit) {
-    this.commonEmit.theme.subscribe((data: theme) => {
-      this.theme = data;
+  constructor(private commonEmit: Emit) { }
+
+  ngOnInit(): void {
+    this.themeInit;
+  }
+
+  themeInit(): void {
+    this.commonEmit.theme.subscribe((res: theme) => {
+      this.theme = res;
     });
   }
-
-  ngOnInit() {
-  }
-
 }

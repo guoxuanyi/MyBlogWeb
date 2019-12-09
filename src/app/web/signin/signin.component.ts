@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AjaxService } from '../../common/service/ajax.service';
-import { ActivatedRoute } from '@angular/router';
 import { theme } from '../../model/Theme';
-import { Emit } from '../../common/service/get-emit.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -15,29 +14,22 @@ export class SigninComponent implements OnInit {
   isLoading: boolean = false;
   userName: string;
   passWord: string;
-  constructor(private ajax: AjaxService,
-    private routeInfo: ActivatedRoute,
-    private commonEmit: Emit) { }
+  constructor(private ajax: AjaxService, private router: Router) { }
 
-  ngOnInit() {
-    this.EmitPage();
+  ngOnInit(): void {
   }
 
-  EmitPage(): void {
-    this.page = this.routeInfo.snapshot.params["page"];
-    this.commonEmit.emitPage.emit(this.page);
-  }
-
-  GetThemeEmit(): void {
-    this.commonEmit.theme.subscribe((res: theme) => {
-      this.theme = res;
-    });
-  }
   signIn(): void {
     this.isLoading = true;
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
-    this.ajax.SignIn(this.userName, this.passWord).subscribe((res: boolean) => alert(res));
+    this.ajax.signIn(this.userName, this.passWord).subscribe((res: boolean) => {
+      console.log(res);
+
+      if (res) {
+        this.router.navigate(['home']);
+      }
+    });
   }
 }

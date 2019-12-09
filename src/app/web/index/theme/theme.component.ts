@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { theme } from 'src/app/model/Theme';
 import { Router, NavigationEnd } from '@angular/router';
-import { Emit } from '../../../common/service/get-emit.service';
+import { Emit } from '../../../common/service/emit.service';
 
 @Component({
   selector: 'app-theme',
@@ -18,12 +18,11 @@ export class ThemeComponent implements OnInit {
 
   constructor(private router: Router, private commonEmit: Emit) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   changeTheme(event: theme) {
     this.commonEmit.saveTheme = event;
     this.commonEmit.emitTheme.emit(event);
   }
-
 }

@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AjaxService } from '../../common/service/ajax.service';
 import { Blogs } from 'src/app/model/Blogs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Emit } from '../../common/service/get-emit.service';
-const count = 5;
+import { ActivatedRoute } from '@angular/router';
+import { Emit } from '../../common/service/emit.service';
 
 @Component({
   selector: 'app-home',
@@ -15,24 +13,39 @@ export class HomeComponent implements OnInit {
   page: number = 0;
   blogs: Blogs[] = [];
   onLoading: boolean = false;
-  constructor(private ajax: AjaxService, private routeInfo: ActivatedRoute, private commonEmit: Emit) { }
+  likeColor: string;
+  isClick: boolean = true;
+
+  constructor(
+    private ajax: AjaxService,
+    private routeInfo: ActivatedRoute,
+    private commonEmit: Emit,
+    private re: Renderer2
+  ) { }
 
   ngOnInit(): void {
-    this.EmitPage();
-    this.loadData();
+    this.emitPage();
+    this.loadBlogs();
   }
 
-  EmitPage(): void {
+  emitPage(): void {
     this.page = this.routeInfo.snapshot.params["page"];
     this.commonEmit.emitPage.emit(this.page);
   }
 
-  loadData(): void {
-    this.ajax.GetNotDeleteBlogs().subscribe((res: Blogs[]) => {
+  loadBlogs(): void {
+    this.ajax.getNotDeleteBlogs().subscribe((res: Blogs[]) => {
       this.blogs = res;
       setTimeout(() => {
         this.onLoading = !this.onLoading;
       }, 1000);
     });
+  }
+
+  likeBlog(data: Blogs, i: number) {
+    data.blogLikeCount += 1;
+    var like = this.re.selectRootElement(`#i${i}`, true);
+    this.re.setStyle(like, 'color', 'red');
+    this.isClick = false;
   }
 }
