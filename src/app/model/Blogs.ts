@@ -7,4 +7,6 @@ export class Blogs {
     blogDate: Date;
     blogLikeCount: number;
     blogDeleteFlag: number;
+    blogLikeCountColor: string;
+    userIcon: string;
 }

@@ -3,6 +3,7 @@ import { AjaxService } from '../../common/service/ajax.service';
 import { Blogs } from 'src/app/model/Blogs';
 import { ActivatedRoute } from '@angular/router';
 import { Emit } from '../../common/service/emit.service';
+import { User } from '../../model/User';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   blogs: Blogs[] = [];
   onLoading: boolean = false;
   likeColor: string;
-  isClick: boolean = true;
+  users: User[] = [];
 
   constructor(
     private ajax: AjaxService,
@@ -25,12 +26,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.emitPage();
-    this.loadBlogs();
+    this.loadUsers();
+    if (this.users != []) {
+      this.loadBlogs();
+    }
   }
 
   emitPage(): void {
     this.page = this.routeInfo.snapshot.params["page"];
     this.commonEmit.emitPage.emit(this.page);
+  }
+
+  loadUsers(): void {
+    this.ajax.getAllUsersNotFreeze().subscribe((res: User[]) => {
+      this.users = res;
+    });
   }
 
   loadBlogs(): void {
@@ -46,6 +56,18 @@ export class HomeComponent implements OnInit {
     data.blogLikeCount += 1;
     var like = this.re.selectRootElement(`#i${i}`, true);
     this.re.setStyle(like, 'color', 'red');
-    this.isClick = false;
+    data.blogLikeCountColor = 'red';
+    data.blogLikeCountColor === null ? 'red' : data.blogLikeCountColor;
+    this.ajax.updateBlogLikeCount(data.blogId).subscribe();
+  }
+
+  getUserIcon(): void {
+    let userIdList: string[] = [];
+    this.users.forEach(u => { userIdList.push(u.userId) });
+    let allUserId: object = { 'allUserId': userIdList };
+    this.ajax.getUserIcon(allUserId).subscribe((res: string[]) => {
+      console.log(res);
+    });
+
   }
 }

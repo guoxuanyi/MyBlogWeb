@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   listenRouter() {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        alert(event);
+        // alert(event);
       }
     });
   }

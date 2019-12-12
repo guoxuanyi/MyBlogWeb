@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { AjaxService } from '../../common/service/ajax.service';
 import { theme } from '../../model/Theme';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ export class SigninComponent implements OnInit {
   isLoading: boolean = false;
   userName: string;
   passWord: string;
+
   constructor(private ajax: AjaxService, private router: Router) { }
 
   ngOnInit(): void {
@@ -24,11 +25,9 @@ export class SigninComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);
-    this.ajax.signIn(this.userName, this.passWord).subscribe((res: boolean) => {
-      console.log(res);
-
-      if (res) {
-        this.router.navigate(['home']);
+    this.ajax.signIn(this.userName, this.passWord).subscribe((res: any) => {
+      if (res === "User signin") {
+        this.router.navigate(['home', 3]);
       }
     });
   }

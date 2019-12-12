@@ -11,10 +11,11 @@ export class FooterComponent implements OnInit {
   constructor(private commonEmit: Emit) { }
 
   ngOnInit(): void {
-    this.themeInit;
+    this.themeInit();
   }
 
   themeInit(): void {
+    this.theme.helpColor = this.commonEmit.saveTheme == null ? '#00cbb6' : this.commonEmit.saveTheme.helpColor;
     this.commonEmit.theme.subscribe((res: theme) => {
       this.theme = res;
     });
